@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proxiom.ai - Intelligent Software Troubleshooting</title>
+    <title>Sootro - Agentic AI for Software Troubleshooting</title>
+    <meta name="description" content="Transform chaos into clarity with Sootro's intelligent dual-engine framework. Cut troubleshooting time by 80% with AI that understands your code.">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -11,143 +19,84 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-blue: #8ba4f5;
+            --primary-purple: #9b7cc8;
+            --primary-teal: #38c5e0;
+            --dark-bg: #f8f9fb;
+            --dark-secondary: #ffffff;
+            --dark-accent: #f1f3f6;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-accent: #2d3748;
+            --success-green: #48bb78;
+            --warning-orange: #ed8936;
+            --error-red: #e53e3e;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
             line-height: 1.6;
-            color: #333;
-            background: #0a0a0a;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Page Styles */
-        .page {
-            display: none;
-            min-height: 100vh;
-            padding-top: 80px;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .page-content {
-            padding: 4rem 0;
-            color: #fff;
-        }
-
-        .page h1 {
-            font-size: 2.5rem;
-            color: #667eea;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .page h2 {
-            font-size: 2rem;
-            color: #fff;
-            margin-bottom: 1.5rem;
-        }
-
-        .page h3 {
-            font-size: 1.5rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        .page p {
-            color: #b0b0b0;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .content-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: hidden;
         }
 
         /* Header */
-        header {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
+        .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
+            background: rgba(248, 249, 251, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        nav {
+        .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
-            cursor: pointer;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
-            color: #fff;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            cursor: pointer;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #667eea;
+            color: var(--primary-blue);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
             color: white;
-            padding: 0.8rem 1.5rem;
+            padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: 50px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -155,17 +104,40 @@
             display: inline-block;
         }
 
-        .cta-button:hover {
+        .cta-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .cta-btn.secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* Main Content */
+        .main {
+            margin-top: 80px;
+        }
+
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(6, 182, 212, 0.1));
+            padding: 8rem 0;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -177,478 +149,392 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
+            background: radial-gradient(circle at 30% 20%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(6, 182, 212, 0.3) 0%, transparent 50%);
+            z-index: -1;
         }
 
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
             margin-bottom: 1.5rem;
-            color: #fff;
-            line-height: 1.2;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--text-primary), var(--primary-teal));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .hero-text p {
-            font-size: 1.25rem;
-            color: #b0b0b0;
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
             margin-bottom: 2rem;
-            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero-buttons {
+        .hero-ctas {
             display: flex;
             gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
             margin-bottom: 3rem;
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: #667eea;
-            border: 2px solid #667eea;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-secondary:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .stats {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .stat-label {
-            color: #888;
-            font-size: 0.9rem;
-        }
-
         .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .sootro-diagram {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
+            background: var(--dark-secondary);
+            border-radius: 16px;
             padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 400px;
-            width: 100%;
-        }
-
-        .diagram-title {
-            color: #667eea;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .flow-step {
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            color: #fff;
-            font-size: 0.9rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .flow-step:hover {
-            background: rgba(102, 126, 234, 0.2);
-            transform: translateX(5px);
-        }
-
-        .arrow {
-            text-align: center;
-            color: #667eea;
-            font-size: 1.5rem;
-            margin: 0.5rem 0;
-        }
-
-        /* Problem Section */
-        .problem-section {
-            padding: 6rem 0;
-            background: #111;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: #888;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .problem-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .problem-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .problem-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-
-        .problem-description {
-            color: #b0b0b0;
-            line-height: 1.6;
-        }
-
-        /* Solution Section */
-        .solution-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        }
-
-        .solution-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .solution-text h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 1.5rem;
-        }
-
-        .solution-text p {
-            color: #b0b0b0;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .feature-list li {
-            color: #b0b0b0;
-            margin-bottom: 0.8rem;
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .feature-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        .architecture-visual {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .tech-stack {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .tech-item {
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 8px;
-            padding: 0.8rem;
-            text-align: center;
-            color: #fff;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-
-        .tech-item:hover {
-            background: rgba(102, 126, 234, 0.2);
-            transform: scale(1.05);
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 6rem 0;
-            background: #0a0a0a;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 15px;
-            padding: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            margin-top: 3rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .flow-diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        .flow-step {
+            background: var(--dark-accent);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            flex: 1 1 0;
+            min-width: 200px;
+            max-width: none;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .feature-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #fff;
+        .flow-step i {
+            font-size: 2rem;
+            color: var(--primary-blue);
             margin-bottom: 1rem;
         }
 
-        .feature-description {
-            color: #b0b0b0;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-benefits {
-            list-style: none;
-        }
-
-        .feature-benefits li {
-            color: #888;
-            margin-bottom: 0.5rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .feature-benefits li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: #667eea;
-        }
-
-        /* Form Styles */
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .pricing-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .pricing-card.featured {
-            border-color: #667eea;
-            transform: scale(1.05);
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .pricing-card.featured:hover {
-            transform: translateY(-10px) scale(1.05);
-        }
-
-        .pricing-header h3 {
-            font-size: 1.5rem;
-            color: #fff;
+        .flow-step h3 {
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
 
-        .pricing-header .price {
-            font-size: 3rem;
-            color: #667eea;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-header .period {
-            color: #888;
+        .flow-step p {
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
-        .pricing-features {
+        .flow-arrow {
+            color: var(--primary-teal);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            background: var(--dark-accent);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: var(--dark-accent);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-card .stat {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--warning-orange);
+            display: block;
+        }
+
+        .problem-card h3 {
+            margin: 1rem 0;
+            color: var(--text-primary);
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Solution Overview */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: var(--dark-secondary);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+        }
+
+        .solution-card i {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .solution-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .solution-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Dual Engine Section */
+        .dual-engine-section {
+            background: linear-gradient(135deg, rgba(155, 124, 200, 0.1), rgba(139, 164, 245, 0.1));
+            padding: 6rem 0;
+        }
+
+        .engine-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .toggle-container {
+            background: var(--dark-secondary);
+            border-radius: 50px;
+            padding: 0.5rem;
+            display: flex;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+        }
+
+        .engine-content {
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .engine-content.active {
+            display: grid;
+        }
+
+        .engine-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .engine-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .engine-features {
             list-style: none;
-            margin: 2rem 0;
-            text-align: left;
         }
 
-        .pricing-features li {
-            color: #b0b0b0;
-            margin-bottom: 0.8rem;
-            position: relative;
+        .engine-features li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
             padding-left: 1.5rem;
+            position: relative;
         }
 
-        .pricing-features li::before {
+        .engine-features li::before {
             content: '✓';
+            color: var(--success-green);
+            font-weight: bold;
             position: absolute;
             left: 0;
-            color: #667eea;
+        }
+
+        .engine-visual {
+            background: var(--dark-secondary);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .graph-visualization {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            background: var(--dark-accent);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Target Applications */
+        .target-apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .app-card {
+            background: var(--dark-secondary);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-teal);
+        }
+
+        .app-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .app-card.procedural .icon {
+            color: var(--primary-blue);
+        }
+
+        .app-card.microservices .icon {
+            color: var(--primary-teal);
+        }
+
+        .app-card.agentic .icon {
+            color: var(--primary-purple);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--dark-secondary);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .feature-header i {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-right: 1rem;
+        }
+
+        .feature-header h3 {
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Enterprise Section */
+        .enterprise-section {
+            background: var(--dark-accent);
+        }
+
+        .enterprise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .enterprise-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .enterprise-item i {
+            font-size: 2.5rem;
+            color: var(--primary-teal);
+            margin-bottom: 1rem;
+        }
+
+        .enterprise-item h3 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .enterprise-item p {
+            color: var(--text-secondary);
         }
 
         /* CTA Section */
         .cta-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
             text-align: center;
+            color: white;
         }
 
-        .cta-content h2 {
+        .cta-section h2 {
             font-size: 2.5rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .cta-content p {
+        .cta-section p {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            opacity: 0.9;
         }
 
         .cta-buttons {
@@ -658,95 +544,260 @@
             flex-wrap: wrap;
         }
 
-        .btn-white {
-            background: #fff;
-            color: #667eea;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+        .cta-buttons .cta-btn {
+            background: white;
+            color: var(--primary-blue);
         }
 
-        .btn-white:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        .cta-buttons .cta-btn.secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .cta-buttons .cta-btn.secondary:hover {
+            background: white;
+            color: var(--primary-blue);
         }
 
         /* Footer */
-        footer {
-            background: #0a0a0a;
-            padding: 3rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .footer {
+            background: var(--dark-secondary);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
 
         .footer-section h3 {
-            color: #fff;
-            font-weight: 600;
             margin-bottom: 1rem;
+            color: var(--text-primary);
         }
 
-        .footer-section p,
+        .footer-section ul {
+            list-style: none;
+        }
+
         .footer-section a {
-            color: #888;
+            color: var(--text-secondary);
             text-decoration: none;
-            line-height: 1.6;
-            cursor: pointer;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: color 0.3s ease;
         }
 
         .footer-section a:hover {
-            color: #667eea;
+            color: var(--primary-blue);
         }
 
         .footer-bottom {
-            text-align: center;
             margin-top: 2rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #666;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: var(--text-secondary);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
+        .modal.show {
+            display: flex;
+            opacity: 1;
+            align-items: center;
+            justify-content: center;
+        }
 
-            .solution-content {
-                grid-template-columns: 1fr;
-            }
+        .modal-content {
+            background: var(--dark-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transform: translateY(50px);
+            transition: transform 0.3s ease;
+        }
 
-            .nav-links {
-                display: none;
-            }
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
 
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
 
-            .stats {
-                justify-content: center;
-            }
+        .modal-header h2 {
+            color: var(--text-primary);
+        }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .form-group.required label::after {
+            content: ' *';
+            color: var(--error-red);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            background: var(--dark-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .form-control.error {
+            border-color: var(--error-red);
+        }
+
+        .error-message {
+            color: var(--error-red);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .social-proof {
+            background: var(--dark-secondary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .social-proof-stat {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .social-proof-stat .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-teal);
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .benefits-list li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .benefits-list li::before {
+            content: '✓';
+            color: var(--success-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-message i {
+            font-size: 4rem;
+            color: var(--success-green);
+            margin-bottom: 1rem;
+        }
+
+        .success-message h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .success-message p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
         }
 
         /* Animations */
@@ -761,1034 +812,961 @@
             }
         }
 
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out;
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
         }
 
-        /* Scroll reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 1rem 0;
+            }
+
+            .engine-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .cta-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .toggle-container {
+                width: 100%;
+            }
+
+            .toggle-btn {
+                flex: 1;
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        /* Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo" onclick="showPage('home')">Proxiom.ai</div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Sootro</div>
             <ul class="nav-links">
-                <li><a onclick="showPage('solution')">Solution</a></li>
-                <li><a onclick="showPage('features')">Features</a></li>
-                <li><a onclick="showPage('architecture')">Architecture</a></li>
-                <li><a onclick="showPage('pricing')">Pricing</a></li>
-                <li><a onclick="showPage('about')">About</a></li>
-                <li><a onclick="showPage('contact')">Contact</a></li>
+                <li><a href="#solution">Solution</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#enterprise">Enterprise</a></li>
+                <li><a href="#pricing">Pricing</a></li>
             </ul>
-            <a onclick="showPage('demo')" class="cta-button">Request Demo</a>
+            <button class="cta-btn" onclick="openTrialModal()">Start Free Trial</button>
         </nav>
     </header>
 
-    <!-- HOME PAGE -->
-    <div id="home" class="page active">
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content fade-in">
-                    <div class="hero-text">
-                        <h1>Transform <span class="gradient-text">Software Troubleshooting</span> with AI</h1>
-                        <p>Sootro's intelligent agent framework revolutionizes how teams diagnose and resolve software issues. Cut troubleshooting time by 80% with automated log analysis, code insights, and root-cause detection.</p>
-                        
-                        <div class="hero-buttons">
-                            <a onclick="showPage('demo')" class="cta-button">Get Started Free</a>
-                            <a onclick="showPage('solution')" class="btn-secondary">See How It Works</a>
-                        </div>
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero section">
+            <h1>De-Risk Your AI Implementations</h1>
+            <p>Sootro ensures your AI launches succeed with intelligent monitoring during critical hypercare periods. Maintain customer satisfaction and retention with proactive issue detection and rapid resolution.</p>
 
-                        <div class="stats">
-                            <div class="stat">
-                                <div class="stat-number">80%</div>
-                                <div class="stat-label">Faster Resolution</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">24/7</div>
-                                <div class="stat-label">Automated Monitoring</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">∞</div>
-                                <div class="stat-label">Scale</div>
+            <div class="hero-ctas">
+                <button class="cta-btn" onclick="openTrialModal()">Start Free Trial</button>
+                <button class="cta-btn secondary" onclick="watchDemo()">Watch Demo</button>
+            </div>
+
+            <div class="hero-visual">
+                <div class="flow-diagram">
+                    <div class="flow-step">
+                        <i class="fas fa-database"></i>
+                        <h3>Log Ingestion</h3>
+                        <p>Unified data model for any format</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI Analysis</h3>
+                        <p>Dual-engine intelligence</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>Graph Relationships</h3>
+                        <p>Code correlation mapping</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <i class="fas fa-search"></i>
+                        <h3>Root Cause</h3>
+                        <p>Precise identification</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section class="problem-section section">
+            <h2 class="section-title">AI Launch Risks That Keep You Up at Night</h2>
+            <p class="section-subtitle">New AI implementations face unique challenges that can impact customer experience and business outcomes</p>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="stat">67%</span>
+                    <h3>AI Projects Fail</h3>
+                    <p>Due to undetected issues during critical launch periods</p>
+                </div>
+                <div class="problem-card">
+                    <span class="stat">-15</span>
+                    <h3>NPS Impact</h3>
+                    <p>Customer satisfaction drops when AI features malfunction</p>
+                </div>
+                <div class="problem-card">
+                    <span class="stat">3x</span>
+                    <h3>Higher Churn Risk</h3>
+                    <p>Failed launches lead to customer retention issues</p>
+                </div>
+                <div class="problem-card">
+                    <span class="stat">24/7</span>
+                    <h3>Hypercare Stress</h3>
+                    <p>Round-the-clock monitoring needed during critical periods</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Overview -->
+        <section class="solution-section section" id="solution">
+            <h2 class="section-title">Your AI Launch Safety Net</h2>
+            <p class="section-subtitle">Proactive monitoring that protects your customer experience during critical periods</p>
+
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Launch Risk Mitigation</h3>
+                    <p>Proactively identify potential issues before they impact customers during your AI feature rollouts and releases.</p>
+                </div>
+                <div class="solution-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Hypercare Support</h3>
+                    <p>24/7 intelligent monitoring during critical launch periods with automated escalation and incident response.</p>
+                </div>
+                <div class="solution-card">
+                    <i class="fas fa-smile"></i>
+                    <h3>NPS Protection</h3>
+                    <p>Maintain customer satisfaction scores by detecting and resolving issues before they affect user experience.</p>
+                </div>
+                <div class="solution-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Confident Releases</h3>
+                    <p>Deploy new AI features with confidence knowing you have comprehensive visibility into system behavior.</p>
+                </div>
+                <div class="solution-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Customer Retention</h3>
+                    <p>Reduce churn risk by ensuring your AI implementations deliver consistent, reliable user experiences.</p>
+                </div>
+                <div class="solution-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Real-Time Insights</h3>
+                    <p>Get instant visibility into AI system performance with actionable insights for immediate response.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dual Engine Section -->
+        <section class="dual-engine-section section">
+            <h2 class="section-title">Dual Engine Intelligence: Adaptive by Design</h2>
+            <p class="section-subtitle">Two specialized engines that adapt to your environment for maximum effectiveness</p>
+
+            <div class="engine-toggle">
+                <div class="toggle-container">
+                    <button class="toggle-btn active" onclick="showEngine('deterministic')">Deterministic Engine</button>
+                    <button class="toggle-btn" onclick="showEngine('probabilistic')">Probabilistic Engine</button>
+                </div>
+            </div>
+
+            <div id="deterministic" class="engine-content active">
+                <div class="engine-info">
+                    <h3>Deterministic Graph Engine</h3>
+                    <p><strong>When:</strong> Source code access available</p>
+                    <p><strong>How:</strong> Direct log-to-code correlation using static analysis</p>
+
+                    <h4>Benefits:</h4>
+                    <ul class="engine-features">
+                        <li>Precise root cause identification</li>
+                        <li>Exact code segments highlighted</li>
+                        <li>Complete execution path reconstruction</li>
+                        <li>Real-time dependency mapping</li>
+                        <li>Automated fix suggestions</li>
+                    </ul>
+                </div>
+                <div class="engine-visual">
+                    <div class="graph-visualization" id="deterministic-viz">
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary);">
+                            <div style="text-align: center;">
+                                <i class="fas fa-code" style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 1rem;"></i>
+                                <p>Code-Level Analysis</p>
+                                <p style="font-size: 0.9rem;">Direct correlation between logs and source code</p>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="hero-visual">
-                        <div class="sootro-diagram">
-                            <div class="diagram-title">Sootro Intelligence Flow</div>
-                            <div class="flow-step">📊 Log Ingestion & Parsing</div>
-                            <div class="arrow">↓</div>
-                            <div class="flow-step">🧠 AI Pattern Recognition</div>
-                            <div class="arrow">↓</div>
-                            <div class="flow-step">🔗 Graph Relationship Mapping</div>
-                            <div class="arrow">↓</div>
-                            <div class="flow-step">⚡ Instant Root Cause Analysis</div>
+            <div id="probabilistic" class="engine-content">
+                <div class="engine-info">
+                    <h3>Probabilistic Graph Engine</h3>
+                    <p><strong>When:</strong> No code access (third-party systems, legacy, SaaS)</p>
+                    <p><strong>How:</strong> ML pattern analysis of log signatures and temporal correlations</p>
+
+                    <h4>Benefits:</h4>
+                    <ul class="engine-features">
+                        <li>Predictive failure detection</li>
+                        <li>Cross-system pattern recognition</li>
+                        <li>Anomaly detection and alerting</li>
+                        <li>Behavioral baseline learning</li>
+                        <li>Proactive issue prevention</li>
+                    </ul>
+                </div>
+                <div class="engine-visual">
+                    <div class="graph-visualization" id="probabilistic-viz">
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary);">
+                            <div style="text-align: center;">
+                                <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--primary-teal); margin-bottom: 1rem;"></i>
+                                <p>Pattern Analysis</p>
+                                <p style="font-size: 0.9rem;">ML-driven correlation and prediction</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="problem-section">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">The Hidden Cost of Software Issues</h2>
-                    <p class="section-subtitle">Every minute of downtime costs your business money, reputation, and developer productivity</p>
+        <!-- Target Applications -->
+        <section class="target-apps-section section">
+            <h2 class="section-title">Perfect for AI-First Organizations</h2>
+            <p class="section-subtitle">Specialized monitoring for modern AI implementations and critical launch phases</p>
+
+            <div class="target-apps-grid">
+                <div class="app-card procedural">
+                    <div class="icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>New AI Launches</h3>
+                    <p>Critical monitoring during the first 30-90 days of AI feature releases when customer impact is highest.</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>ML model deployments</li>
+                        <li>Recommendation engines</li>
+                        <li>Personalization features</li>
+                    </ul>
                 </div>
-
-                <div class="problem-grid">
-                    <div class="problem-card reveal">
-                        <div class="problem-icon">⏰</div>
-                        <h3 class="problem-title">Hours of Manual Investigation</h3>
-                        <p class="problem-description">Developers spend 40% of their time hunting through logs, tracing code paths, and connecting disparate data sources to understand what went wrong.</p>
+                <div class="app-card microservices">
+                    <div class="icon">
+                        <i class="fas fa-heartbeat"></i>
                     </div>
-
-                    <div class="problem-card reveal">
-                        <div class="problem-icon">💸</div>
-                        <h3 class="problem-title">Expensive Downtime</h3>
-                        <p class="problem-description">Critical system failures can cost enterprises up to $5,600 per minute, while teams scramble to identify root causes across complex architectures.</p>
+                    <h3>Hypercare Periods</h3>
+                    <p>Intensive monitoring during high-risk periods like major releases, infrastructure changes, or peak usage times.</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>Black Friday deployments</li>
+                        <li>Product launch campaigns</li>
+                        <li>System migrations</li>
+                    </ul>
+                </div>
+                <div class="app-card agentic">
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
                     </div>
-
-                    <div class="problem-card reveal">
-                        <div class="problem-icon">🔍</div>
-                        <h3 class="problem-title">Data Silos</h3>
-                        <p class="problem-description">Logs, code repositories, issue trackers, and monitoring tools exist in isolation, making it nearly impossible to see the complete picture.</p>
-                    </div>
+                    <h3>Customer Experience</h3>
+                    <p>Real-time monitoring of user-facing AI features to maintain high NPS scores and prevent churn.</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>Chatbots and virtual assistants</li>
+                        <li>Search and discovery</li>
+                        <li>Content recommendation</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section">
-            <div class="container">
-                <div class="cta-content reveal">
-                    <h2>Ready to Transform Your Troubleshooting?</h2>
-                    <p>Join forward-thinking teams who've already cut their incident response times by 80%. Start your free trial today and see the difference intelligent troubleshooting makes.</p>
-                    
-                    <div class="cta-buttons">
-                        <a onclick="showPage('demo')" class="btn-white">Start Free Trial</a>
-                        <a onclick="showPage('contact')" class="btn-secondary" style="border-color: white; color: white;">Schedule Demo</a>
+        <!-- Key Features -->
+        <section class="features-section section" id="features">
+            <h2 class="section-title">Enterprise-Grade Capabilities</h2>
+            <p class="section-subtitle">Powerful features designed for the demands of modern software operations</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <i class="fas fa-microscope"></i>
+                        <h3>Enhanced Code Analysis</h3>
                     </div>
+                    <p>Deep static and dynamic analysis that understands your application's DNA, providing insights into code behavior and potential failure points.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <i class="fas fa-plug"></i>
+                        <h3>Smart Integrations</h3>
+                    </div>
+                    <p>Native connections to GitHub, Jira, Slack, PagerDuty, and 300+ other tools. Seamlessly fits into your existing workflow.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h3>Lightning-Fast Queries</h3>
+                    </div>
+                    <p>Sub-second responses to complex questions across petabytes of data using advanced indexing and intelligent caching strategies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>Graph-Based Insights</h3>
+                    </div>
+                    <p>Visualize relationships that traditional tools miss. Understand how components interact and how failures propagate through your system.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Cloud-Native Architecture</h3>
+                    </div>
+                    <p>Deploy anywhere, scale infinitely. Built on Kubernetes with auto-scaling, high availability, and multi-cloud support.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Enterprise Security</h3>
+                    </div>
+                    <p>End-to-end encryption, role-based access control, and compliance with major industry standards. Deploy in your own environment to maintain complete IP security.</p>
                 </div>
             </div>
         </section>
-    </div>
 
-    <!-- SOLUTION PAGE -->
-    <div id="solution" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>Sootro Solution</h1>
-                
-                <div class="solution-content">
-                    <div class="solution-text">
-                        <h2>Meet <span class="gradient-text">Sootro</span> - Your AI Troubleshooting Assistant</h2>
-                        <p>Sootro transforms chaos into clarity by automatically connecting the dots between your logs, code, and business context. Our intelligent agent framework doesn't just find problems—it explains them.</p>
-                        
-                        <ul class="feature-list">
-                            <li>Unified Data Model standardizes logs from any source</li>
-                            <li>AI-powered pattern recognition spots anomalies instantly</li>
-                            <li>Graph database reveals hidden relationships</li>
-                            <li>Automated root cause analysis with explanations</li>
-                            <li>Integration with existing tools (Jira, GitHub, monitoring)</li>
-                        </ul>
+        <!-- Customer Success Focus -->
+        <section class="enterprise-section section" id="customer-success">
+            <h2 class="section-title">Protect What Matters Most: Your Customers</h2>
+            <p class="section-subtitle">Ensure AI launches strengthen customer relationships instead of risking them</p>
 
-                        <a onclick="showPage('features')" class="cta-button">Explore Features</a>
-                    </div>
-
-                    <div class="architecture-visual">
-                        <h3 style="color: #667eea; text-align: center; margin-bottom: 1.5rem;">Enterprise-Grade Architecture</h3>
-                        <div class="tech-stack">
-                            <div class="tech-item">Vector Search<br><small>Milvus/Chroma</small></div>
-                            <div class="tech-item">Graph Database<br><small>Neo4j/Memgraph</small></div>
-                            <div class="tech-item">Document Store<br><small>MongoDB</small></div>
-                            <div class="tech-item">Stream Processing<br><small>Kafka/Flink</small></div>
-                            <div class="tech-item">Big Data<br><small>PySpark/Hadoop</small></div>
-                            <div class="tech-item">Orchestration<br><small>Kubernetes</small></div>
-                            <div class="tech-item">AI/ML<br><small>LLM Agents</small></div>
-                            <div class="tech-item">Cloud Ready<br><small>AWS/Azure/GCP</small></div>
-                        </div>
-                    </div>
+            <div class="enterprise-grid">
+                <div class="enterprise-item">
+                    <i class="fas fa-smile"></i>
+                    <h3>NPS Protection</h3>
+                    <p>Maintain high customer satisfaction scores by preventing AI-related issues from reaching your users.</p>
                 </div>
-
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3>🔄 Log Processing Pipeline</h3>
-                        <p>Our advanced log processing pipeline automatically ingests logs from multiple sources, standardizes them using our Unified Data Model, and validates schema compliance in real-time.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🧠 AI Pattern Recognition</h3>
-                        <p>Advanced LLM agents analyze log patterns, detect anomalies, and identify relationships between events across your entire system architecture.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🔗 Graph Intelligence</h3>
-                        <p>Build comprehensive relationship maps between logs, code, and business context to understand the full impact of any issue.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>⚡ Real-time Analysis</h3>
-                        <p>Get instant insights with sub-second query responses and real-time monitoring of your systems.</p>
-                    </div>
+                <div class="enterprise-item">
+                    <i class="fas fa-users-cog"></i>
+                    <h3>Retention Assurance</h3>
+                    <p>Reduce churn risk during critical launch periods with proactive monitoring and rapid issue resolution.</p>
                 </div>
+                <div class="enterprise-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>24/7 Hypercare</h3>
+                    <p>Round-the-clock intelligent monitoring during your most vulnerable periods with automated alerting.</p>
+                </div>
+                <div class="enterprise-item">
+                    <i class="fas fa-server"></i>
+                    <h3>Secure Deployment</h3>
+                    <p>Deploy in your own environment to maintain complete control over sensitive customer data and AI models.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section section">
+            <h2>Launch Your Next AI Feature with Confidence</h2>
+            <p>Don't let your next AI implementation become a customer experience disaster. Protect your NPS and reduce churn risk.</p>
+
+            <div class="cta-buttons">
+                <button class="cta-btn" onclick="openTrialModal()">Secure Your AI Launch</button>
+                <button class="cta-btn secondary" onclick="scheduleDemo()">See Hypercare Demo</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Product</h3>
+                <ul>
+                    <li><a href="#solution">Solution</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#integrations">Integrations</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#docs">Documentation</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                    <li><a href="#webinars">Webinars</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#press">Press</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#help">Help Center</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#status">Status</a></li>
+                    <li><a href="#security">Security</a></li>
+                </ul>
             </div>
         </div>
-    </div>
-
-    <!-- FEATURES PAGE -->
-    <div id="features" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>Powerful Features</h1>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Every component designed to accelerate your troubleshooting workflow</p>
-
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🔄</div>
-                        <h3 class="feature-title">Unified Log Processing</h3>
-                        <p class="feature-description">Transform logs from any format into a standardized Unified Data Model. Support for Python, Java, Spring Boot, AWS, GCP, and more.</p>
-                        <ul class="feature-benefits">
-                            <li>Automatic format detection</li>
-                            <li>Real-time validation</li>
-                            <li>Schema enforcement</li>
-                            <li>Multi-source ingestion</li>
-                        </ul>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🧠</div>
-                        <h3 class="feature-title">Intelligent Code Analysis</h3>
-                        <p class="feature-description">EnhancedCodeGraphBuilder parses source code, scores methods, and builds weighted relationship graphs for deep insights.</p>
-                        <ul class="feature-benefits">
-                            <li>Method complexity scoring</li>
-                            <li>Dependency mapping</li>
-                            <li>Impact analysis</li>
-                            <li>Code quality assessment</li>
-                        </ul>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🔗</div>
-                        <h3 class="feature-title">Smart Integrations</h3>
-                        <p class="feature-description">Connect with GitHub for PR analysis and Jira for issue tracking. All data vectorized and searchable for instant context.</p>
-                        <ul class="feature-benefits">
-                            <li>GitHub PR archiving</li>
-                            <li>Jira story ingestion</li>
-                            <li>Similarity search</li>
-                            <li>Cross-platform insights</li>
-                        </ul>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3 class="feature-title">Lightning-Fast Queries</h3>
-                        <p class="feature-description">FastAPI-powered service with configurable LLM endpoints for query generation, refinement, and customizable code summaries.</p>
-                        <ul class="feature-benefits">
-                            <li>Sub-second responses</li>
-                            <li>Natural language queries</li>
-                            <li>Custom summarization</li>
-                            <li>API-first design</li>
-                        </ul>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3 class="feature-title">Graph-Based Insights</h3>
-                        <p class="feature-description">Visualize complex relationships between logs, code, and business context in an intuitive graph interface.</p>
-                        <ul class="feature-benefits">
-                            <li>Interactive visualization</li>
-                            <li>Relationship discovery</li>
-                            <li>Pattern recognition</li>
-                            <li>Impact assessment</li>
-                        </ul>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">☁️</div>
-                        <h3 class="feature-title">Cloud-Native Architecture</h3>
-                        <p class="feature-description">Deploy anywhere with Kubernetes orchestration. Scales from local development to enterprise cloud deployments.</p>
-                        <ul class="feature-benefits">
-                            <li>Auto-scaling</li>
-                            <li>High availability</li>
-                            <li>Multi-cloud support</li>
-                            <li>Container-ready</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ARCHITECTURE PAGE -->
-    <div id="architecture" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>Architecture Overview</h1>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Enterprise-grade, scalable, and secure architecture designed for modern DevOps</p>
-
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3>🏗️ Microservices Architecture</h3>
-                        <p>Built on a modern microservices architecture with containerized components that can be deployed independently and scaled based on demand.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🔒 Security First</h3>
-                        <p>End-to-end encryption, role-based access control, and compliance with enterprise security standards including SOC2 and GDPR.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>📈 Auto-Scaling</h3>
-                        <p>Kubernetes-native auto-scaling ensures optimal performance during peak loads while minimizing costs during low usage periods.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🌐 Multi-Cloud Ready</h3>
-                        <p>Deploy on AWS, Azure, GCP, or on-premises. Our architecture is cloud-agnostic and portable across environments.</p>
-                    </div>
-                </div>
-
-                <h2>Technology Stack</h2>
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3>🗄️ Data Layer</h3>
-                        <ul class="feature-benefits">
-                            <li>Neo4j/Memgraph for graph relationships</li>
-                            <li>MongoDB for document storage</li>
-                            <li>Milvus/Chroma for vector search</li>
-                            <li>Hadoop for big data storage</li>
-                        </ul>
-                    </div>
-                    <div class="content-card">
-                        <h3>🔄 Processing Layer</h3>
-                        <ul class="feature-benefits">
-                            <li>Kafka/Flink for stream processing</li>
-                            <li>PySpark for distributed computing</li>
-                            <li>Python-based LLM agents</li>
-                            <li>FastAPI for service endpoints</li>
-                        </ul>
-                    </div>
-                    <div class="content-card">
-                        <h3>🎨 Presentation Layer</h3>
-                        <ul class="feature-benefits">
-                            <li>React.js frontend</li>
-                            <li>Node.js backend services</li>
-                            <li>RESTful API design</li>
-                            <li>Real-time WebSocket connections</li>
-                        </ul>
-                    </div>
-                    <div class="content-card">
-                        <h3>⚙️ Infrastructure</h3>
-                        <ul class="feature-benefits">
-                            <li>Kubernetes orchestration</li>
-                            <li>Docker containerization</li>
-                            <li>CI/CD pipelines</li>
-                            <li>Monitoring and alerting</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PRICING PAGE -->
-    <div id="pricing" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>Pricing Plans</h1>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Choose the plan that fits your team's needs</p>
-
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3>Starter</h3>
-                            <div class="price">$29</div>
-                            <div class="period">per user/month</div>
-                        </div>
-                        <ul class="pricing-features">
-                            <li>Up to 10GB log processing</li>
-                            <li>Basic log pattern detection</li>
-                            <li>5 integrations</li>
-                            <li>Email support</li>
-                            <li>Basic dashboard</li>
-                        </ul>
-                        <a onclick="showPage('demo')" class="cta-button" style="width: 100%;">Start Free Trial</a>
-                    </div>
-
-                    <div class="pricing-card featured">
-                        <div class="pricing-header">
-                            <h3>Professional</h3>
-                            <div class="price">$99</div>
-                            <div class="period">per user/month</div>
-                        </div>
-                        <ul class="pricing-features">
-                            <li>Up to 100GB log processing</li>
-                            <li>Advanced AI pattern recognition</li>
-                            <li>Unlimited integrations</li>
-                            <li>Priority support</li>
-                            <li>Advanced analytics</li>
-                            <li>Code graph analysis</li>
-                            <li>Custom alerts</li>
-                        </ul>
-                        <a onclick="showPage('demo')" class="cta-button" style="width: 100%;">Start Free Trial</a>
-                    </div>
-
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3>Enterprise</h3>
-                            <div class="price">Custom</div>
-                            <div class="period">contact sales</div>
-                        </div>
-                        <ul class="pricing-features">
-                            <li>Unlimited log processing</li>
-                            <li>Full AI capabilities</li>
-                            <li>On-premise deployment</li>
-                            <li>24/7 dedicated support</li>
-                            <li>Custom integrations</li>
-                            <li>SLA guarantees</li>
-                            <li>Training & onboarding</li>
-                        </ul>
-                        <a onclick="showPage('contact')" class="cta-button" style="width: 100%;">Contact Sales</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ABOUT PAGE -->
-    <div id="about" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>About Proxiom.ai</h1>
-                
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3>🎯 Our Mission</h3>
-                        <p>To revolutionize software troubleshooting by making it faster, smarter, and more intuitive through the power of AI and intelligent automation.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🔮 Our Vision</h3>
-                        <p>A world where software issues are resolved instantly, developers focus on building rather than debugging, and downtime becomes a thing of the past.</p>
-                    </div>
-                </div>
-
-                <h2>Our Story</h2>
-                <p>Founded by experienced software engineers and data scientists who spent countless hours debugging complex systems, Proxiom.ai was born from the frustration of manual troubleshooting processes. We recognized that while software systems were becoming increasingly complex, the tools for understanding and debugging them remained primitive.</p>
-
-                <p>Our team combines deep expertise in artificial intelligence, distributed systems, and software engineering to create solutions that fundamentally change how teams approach problem-solving in software development and operations.</p>
-
-                <h2>Why Sootro?</h2>
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3>⚡ Speed</h3>
-                        <p>Reduce mean time to resolution from hours to minutes with automated pattern recognition and root cause analysis.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🎯 Accuracy</h3>
-                        <p>AI-powered insights eliminate guesswork and provide precise, actionable recommendations for issue resolution.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>📈 Scale</h3>
-                        <p>Handle enterprise-scale log volumes and complex distributed architectures with ease.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🤝 Integration</h3>
-                        <p>Seamlessly integrate with your existing tools and workflows without disrupting your development process.</p>
-                    </div>
-                </div>
-
-                <h2>Leadership Team</h2>
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3>👨‍💼 CEO & Co-Founder</h3>
-                        <p>Former Principal Engineer at leading tech companies with 15+ years of experience in distributed systems and AI.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>👩‍💻 CTO & Co-Founder</h3>
-                        <p>AI/ML expert with PhD in Computer Science and extensive experience in natural language processing and graph analytics.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>👨‍🔬 VP of Engineering</h3>
-                        <p>Former engineering leader at major cloud providers with deep expertise in scalable infrastructure and DevOps.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>👩‍💼 VP of Product</h3>
-                        <p>Product strategy expert with track record of bringing developer tools from concept to market leadership.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CONTACT PAGE -->
-    <div id="contact" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>Contact Us</h1>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Get in touch with our team to learn more about Sootro</p>
-
-                <div class="form-container">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" id="company" name="company">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="role">Role</label>
-                            <select id="role" name="role">
-                                <option value="">Select your role</option>
-                                <option value="developer">Developer</option>
-                                <option value="devops">DevOps Engineer</option>
-                                <option value="sre">Site Reliability Engineer</option>
-                                <option value="manager">Engineering Manager</option>
-                                <option value="cto">CTO/VP Engineering</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="team-size">Team Size</label>
-                            <select id="team-size" name="team-size">
-                                <option value="">Select team size</option>
-                                <option value="1-10">1-10 people</option>
-                                <option value="11-50">11-50 people</option>
-                                <option value="51-200">51-200 people</option>
-                                <option value="201+">201+ people</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="interest">Primary Interest</label>
-                            <select id="interest" name="interest">
-                                <option value="">What interests you most?</option>
-                                <option value="demo">Schedule a demo</option>
-                                <option value="trial">Start a free trial</option>
-                                <option value="pricing">Discuss pricing</option>
-                                <option value="integration">Technical integration</option>
-                                <option value="partnership">Partnership opportunities</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your current troubleshooting challenges..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
-                    </form>
-                </div>
-
-                <div class="content-grid" style="margin-top: 4rem;">
-                    <div class="content-card">
-                        <h3>📧 Email</h3>
-                        <p>sales@proxiom.ai<br>support@proxiom.ai</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🏢 Office</h3>
-                        <p>San Francisco, CA<br>New York, NY<br>Remote-first company</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>💬 Support</h3>
-                        <p>24/7 chat support<br>Community forum<br>Documentation</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- DEMO PAGE -->
-    <div id="demo" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>Request a Demo</h1>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">See Sootro in action with a personalized demonstration</p>
-
-                <div class="form-container">
-                    <form>
-                        <div class="form-group">
-                            <label for="demo-name">Full Name</label>
-                            <input type="text" id="demo-name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="demo-email">Work Email</label>
-                            <input type="email" id="demo-email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="demo-company">Company</label>
-                            <input type="text" id="demo-company" name="company" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="demo-title">Job Title</label>
-                            <input type="text" id="demo-title" name="title" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="demo-phone">Phone Number</label>
-                            <input type="tel" id="demo-phone" name="phone">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="demo-team-size">Team Size</label>
-                            <select id="demo-team-size" name="team-size" required>
-                                <option value="">Select team size</option>
-                                <option value="1-10">1-10 developers</option>
-                                <option value="11-50">11-50 developers</option>
-                                <option value="51-200">51-200 developers</option>
-                                <option value="201+">201+ developers</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="demo-use-case">Primary Use Case</label>
-                            <select id="demo-use-case" name="use-case" required>
-                                <option value="">Select primary use case</option>
-                                <option value="incident-response">Faster incident response</option>
-                                <option value="debugging">Improved debugging workflow</option>
-                                <option value="monitoring">Enhanced monitoring</option>
-                                <option value="compliance">Compliance and auditing</option>
-                                <option value="cost-reduction">Reduce operational costs</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="demo-timeline">Implementation Timeline</label>
-                            <select id="demo-timeline" name="timeline">
-                                <option value="">When are you looking to implement?</option>
-                                <option value="immediate">Immediately</option>
-                                <option value="1-3-months">1-3 months</option>
-                                <option value="3-6-months">3-6 months</option>
-                                <option value="6+-months">6+ months</option>
-                                <option value="evaluating">Just evaluating</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="demo-challenges">Current Challenges</label>
-                            <textarea id="demo-challenges" name="challenges" rows="4" placeholder="Describe your current troubleshooting challenges and what you hope to achieve with Sootro..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="cta-button" style="width: 100%;">Schedule Demo</button>
-                    </form>
-                </div>
-
-                <div class="content-grid" style="margin-top: 4rem;">
-                    <div class="content-card">
-                        <h3>🕒 30-Minute Demo</h3>
-                        <p>Personalized demonstration of Sootro's capabilities tailored to your specific use case and technical environment.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🔧 Technical Deep Dive</h3>
-                        <p>See how Sootro integrates with your existing tools and processes, including live examples with your data.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>💼 Business Case</h3>
-                        <p>Understand the ROI and business impact of implementing Sootro in your organization.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- DOCUMENTATION PAGE -->
-    <div id="documentation" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>Documentation</h1>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Complete guides and API references for Sootro</p>
-
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3>📚 Getting Started</h3>
-                        <p>Quick start guide to get Sootro up and running in your environment within minutes.</p>
-                        <ul class="feature-benefits">
-                            <li>Installation guide</li>
-                            <li>Basic configuration</li>
-                            <li>First log ingestion</li>
-                            <li>Dashboard overview</li>
-                        </ul>
-                    </div>
-                    <div class="content-card">
-                        <h3>🔧 Configuration</h3>
-                        <p>Detailed configuration options for customizing Sootro to your specific needs.</p>
-                        <ul class="feature-benefits">
-                            <li>Log format configuration</li>
-                            <li>Integration setup</li>
-                            <li>Alert configuration</li>
-                            <li>User management</li>
-                        </ul>
-                    </div>
-                    <div class="content-card">
-                        <h3>🔌 Integrations</h3>
-                        <p>Step-by-step guides for integrating with popular tools and platforms.</p>
-                        <ul class="feature-benefits">
-                            <li>GitHub integration</li>
-                            <li>Jira connectivity</li>
-                            <li>Slack notifications</li>
-                            <li>Custom webhooks</li>
-                        </ul>
-                    </div>
-                    <div class="content-card">
-                        <h3>🚀 API Reference</h3>
-                        <p>Complete API documentation with examples and SDKs for multiple languages.</p>
-                        <ul class="feature-benefits">
-                            <li>RESTful API endpoints</li>
-                            <li>Authentication</li>
-                            <li>Python SDK</li>
-                            <li>JavaScript SDK</li>
-                        </ul>
-                    </div>
-                    <div class="content-card">
-                        <h3>🛠️ Troubleshooting</h3>
-                        <p>Common issues and solutions to help you resolve problems quickly.</p>
-                        <ul class="feature-benefits">
-                            <li>Common errors</li>
-                            <li>Performance tuning</li>
-                            <li>Log debugging</li>
-                            <li>Support resources</li>
-                        </ul>
-                    </div>
-                    <div class="content-card">
-                        <h3>📖 Best Practices</h3>
-                        <p>Industry best practices and recommendations for optimal Sootro usage.</p>
-                        <ul class="feature-benefits">
-                            <li>Log structure guidelines</li>
-                            <li>Performance optimization</li>
-                            <li>Security recommendations</li>
-                            <li>Scaling strategies</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SUPPORT PAGE -->
-    <div id="support" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>Support</h1>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Get help when you need it with our comprehensive support options</p>
-
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3>💬 Live Chat</h3>
-                        <p>Get instant help from our support team during business hours.</p>
-                        <ul class="feature-benefits">
-                            <li>Real-time assistance</li>
-                            <li>Technical support</li>
-                            <li>Available 9 AM - 6 PM PST</li>
-                            <li>Average response: < 2 minutes</li>
-                        </ul>
-                        <button class="cta-button">Start Chat</button>
-                    </div>
-                    <div class="content-card">
-                        <h3>📧 Email Support</h3>
-                        <p>Submit detailed support requests and get comprehensive responses.</p>
-                        <ul class="feature-benefits">
-                            <li>24/7 ticket submission</li>
-                            <li>Detailed technical help</li>
-                            <li>File attachments supported</li>
-                            <li>Response within 4 hours</li>
-                        </ul>
-                        <button class="cta-button" onclick="showPage('contact')">Contact Support</button>
-                    </div>
-                    <div class="content-card">
-                        <h3>🎓 Training</h3>
-                        <p>Comprehensive training programs to maximize your team's productivity.</p>
-                        <ul class="feature-benefits">
-                            <li>Onboarding sessions</li>
-                            <li>Advanced workshops</li>
-                            <li>Custom training</li>
-                            <li>Certification programs</li>
-                        </ul>
-                        <button class="cta-button">Schedule Training</button>
-                    </div>
-                    <div class="content-card">
-                        <h3>🏆 Premium Support</h3>
-                        <p>Enterprise-level support with dedicated resources and SLA guarantees.</p>
-                        <ul class="feature-benefits">
-                            <li>Dedicated support manager</li>
-                            <li>24/7 phone support</li>
-                            <li>SLA guarantees</li>
-                            <li>Priority escalation</li>
-                        </ul>
-                        <button class="cta-button" onclick="showPage('contact')">Upgrade Support</button>
-                    </div>
-                </div>
-
-                <h2>Frequently Asked Questions</h2>
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3>❓ How quickly can I get started?</h3>
-                        <p>Most customers are up and running within 30 minutes. Our quick start guide and automated setup process make deployment straightforward.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>❓ What log formats do you support?</h3>
-                        <p>Sootro supports all major log formats including JSON, syslog, Apache, Nginx, and custom formats. Our AI can automatically detect and parse most formats.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>❓ How does pricing work?</h3>
-                        <p>Pricing is based on data volume processed and number of users. We offer flexible plans from small teams to large enterprises with volume discounts.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>❓ Is my data secure?</h3>
-                        <p>Yes, we use enterprise-grade security including encryption at rest and in transit, SOC2 compliance, and optional on-premises deployment.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PRIVACY POLICY PAGE -->
-    <div id="privacy" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>Privacy Policy</h1>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Last updated: January 2025</p>
-
-                <h2>Information We Collect</h2>
-                <p>We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support.</p>
-
-                <h2>How We Use Your Information</h2>
-                <p>We use the information we collect to provide, maintain, and improve our services, process transactions, communicate with you, and comply with legal obligations.</p>
-
-                <h2>Information Sharing</h2>
-                <p>We do not sell, trade, or otherwise transfer your personal information to third parties except as described in this policy or with your consent.</p>
-
-                <h2>Data Security</h2>
-                <p>We implement appropriate security measures to protect your information against unauthorized access, alteration, disclosure, or destruction.</p>
-
-                <h2>Your Rights</h2>
-                <p>You have the right to access, update, or delete your personal information. You may also opt out of certain communications from us.</p>
-
-                <h2>Contact Us</h2>
-                <p>If you have questions about this Privacy Policy, please contact us at privacy@proxiom.ai</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- TERMS OF SERVICE PAGE -->
-    <div id="terms" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>Terms of Service</h1>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Last updated: January 2025</p>
-
-                <h2>Acceptance of Terms</h2>
-                <p>By accessing and using Sootro and related services, you accept and agree to be bound by the terms and provision of this agreement.</p>
-
-                <h2>Use License</h2>
-                <p>Permission is granted to temporarily use Sootro for personal or commercial use. This is the grant of a license, not a transfer of title.</p>
-
-                <h2>Service Availability</h2>
-                <p>We strive to maintain high availability but do not guarantee uninterrupted access to our services.</p>
-
-                <h2>User Responsibilities</h2>
-                <p>You are responsible for maintaining the confidentiality of your account and for all activities that occur under your account.</p>
-
-                <h2>Limitation of Liability</h2>
-                <p>In no event shall Proxiom.ai be liable for any indirect, incidental, special, consequential, or punitive damages.</p>
-
-                <h2>Contact Information</h2>
-                <p>For questions about these Terms of Service, please contact us at legal@proxiom.ai</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- STATUS PAGE -->
-    <div id="status" class="page">
-        <div class="container">
-            <div class="page-content">
-                <h1>System Status</h1>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Current status of all Sootro services</p>
-
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3>🟢 API Services</h3>
-                        <p><strong>Operational</strong></p>
-                        <p>All API endpoints are functioning normally</p>
-                        <p>Response time: 45ms average</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🟢 Web Application</h3>
-                        <p><strong>Operational</strong></p>
-                        <p>Dashboard and web interface fully available</p>
-                        <p>Load time: 1.2s average</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🟢 Log Processing</h3>
-                        <p><strong>Operational</strong></p>
-                        <p>All log ingestion pipelines running normally</p>
-                        <p>Processing delay: <2 seconds</p>
-                    </div>
-                    <div class="content-card">
-                        <h3>🟢 Database Services</h3>
-                        <p><strong>Operational</strong></p>
-                        <p>All database systems healthy</p>
-                        <p>Query response: 12ms average</p>
-                    </div>
-                </div>
-
-                <h2>Recent Incidents</h2>
-                <div class="content-card">
-                    <h3>✅ Resolved - January 5, 2025</h3>
-                    <p><strong>Brief API slowdown</strong> - Some users experienced slower response times between 2:15 PM and 2:45 PM PST. Issue was resolved by scaling additional processing nodes.</p>
-                </div>
-
-                <h2>Scheduled Maintenance</h2>
-                <div class="content-card">
-                    <h3>🔧 Upcoming - January 15, 2025</h3>
-                    <p><strong>Database optimization</strong> - Scheduled maintenance window from 2:00 AM to 4:00 AM PST. No service interruption expected.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Proxiom.ai</h3>
-                    <p>Intelligent software troubleshooting powered by AI. Transforming how teams detect, diagnose, and resolve issues.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Product</h3>
-                    <p><a onclick="showPage('solution')">Sootro Platform</a></p>
-                    <p><a onclick="showPage('features')">Features</a></p>
-                    <p><a onclick="showPage('architecture')">Architecture</a></p>
-                    <p><a onclick="showPage('pricing')">Pricing</a></p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <p><a onclick="showPage('about')">About Us</a></p>
-                    <p><a onclick="showPage('careers')">Careers</a></p>
-                    <p><a onclick="showPage('blog')">Blog</a></p>
-                    <p><a onclick="showPage('contact')">Contact</a></p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <p><a onclick="showPage('documentation')">Documentation</a></p>
-                    <p><a onclick="showPage('api-reference')">API Reference</a></p>
-                    <p><a onclick="showPage('support')">Support</a></p>
-                    <p><a onclick="showPage('status')">Status</a></p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Proxiom.ai. All rights reserved. | <a onclick="showPage('privacy')">Privacy Policy</a> | <a onclick="showPage('terms')">Terms of Service</a></p>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sootro. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
         </div>
     </footer>
 
+    <!-- Trial Request Modal -->
+    <div id="trialModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Get Early Access to Sootro</h2>
+                <button class="close-btn" onclick="closeTrialModal()">&times;</button>
+            </div>
+
+            <div id="trialForm">
+                <div class="social-proof">
+                    <div class="social-proof-stat">
+                        <span class="number">500+</span>
+                        <p>Companies already on the waitlist</p>
+                    </div>
+                </div>
+
+                <p style="margin-bottom: 2rem; color: var(--text-secondary);">Join the waitlist for exclusive early access to our intelligent troubleshooting platform</p>
+
+                <form id="waitlistForm" onsubmit="submitForm(event)">
+                    <div class="form-group required">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" class="form-control" required>
+                        <div class="error-message" id="fullNameError"></div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="email">Work Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" name="company" class="form-control" required>
+                        <div class="error-message" id="companyError"></div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="jobTitle">Job Title/Role</label>
+                        <input type="text" id="jobTitle" name="jobTitle" class="form-control" required>
+                        <div class="error-message" id="jobTitleError"></div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="companySize">Company Size</label>
+                        <select id="companySize" name="companySize" class="form-control" required>
+                            <option value="">Select company size</option>
+                            <option value="1-50">1-50 employees</option>
+                            <option value="51-200">51-200 employees</option>
+                            <option value="201-1000">201-1000 employees</option>
+                            <option value="1000+">1000+ employees</option>
+                        </select>
+                        <div class="error-message" id="companySizeError"></div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="useCase">Primary Use Case</label>
+                        <select id="useCase" name="useCase" class="form-control" required>
+                            <option value="">Select primary use case</option>
+                            <option value="microservices">Microservices</option>
+                            <option value="legacy">Legacy Systems</option>
+                            <option value="ai-ml">AI/ML Applications</option>
+                            <option value="mixed">Mixed Environment</option>
+                        </select>
+                        <div class="error-message" id="useCaseError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="painPoints">Current Pain Points (Optional)</label>
+                        <textarea id="painPoints" name="painPoints" class="form-control" rows="3" placeholder="Tell us about your current troubleshooting challenges..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number (Optional)</label>
+                        <input type="tel" id="phone" name="phone" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="source">How did you hear about us?</label>
+                        <select id="source" name="source" class="form-control">
+                            <option value="">Select source</option>
+                            <option value="google">Google Search</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="referral">Referral</option>
+                            <option value="event">Conference/Event</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="benefits-list" style="margin: 2rem 0;">
+                        <h4 style="color: var(--text-primary); margin-bottom: 1rem;">What you'll get:</h4>
+                        <li>Priority access to beta program</li>
+                        <li>Free setup consultation with our experts</li>
+                        <li>Custom demo with your actual log data</li>
+                        <li>30-day free trial when launched</li>
+                        <li>Direct line to our engineering team</li>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        Join the Waitlist
+                    </button>
+                </form>
+
+                <div style="margin-top: 1rem; text-align: center; font-size: 0.875rem; color: var(--text-secondary);">
+                    <p>🔒 Enterprise-grade security • On-premise deployment available • No spam guarantee</p>
+                    <p><a href="#privacy" style="color: var(--primary-blue);">Privacy Policy</a></p>
+                </div>
+            </div>
+
+            <div id="successMessage" class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <h3>Welcome to the Sootro Waitlist!</h3>
+                <p>Thank you for your interest. We'll be in touch soon with exclusive updates and early access information.</p>
+                <button class="cta-btn" onclick="closeTrialModal()">Continue Exploring</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show the selected page
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                
-                // Scroll to top
-                window.scrollTo(0, 0);
-                
-                // Update page title
-                const titles = {
-                    'home': 'Proxiom.ai - Intelligent Software Troubleshooting',
-                    'solution': 'Sootro Solution - Proxiom.ai',
-                    'features': 'Features - Proxiom.ai',
-                    'architecture': 'Architecture - Proxiom.ai',
-                    'pricing': 'Pricing - Proxiom.ai',
-                    'about': 'About Us - Proxiom.ai',
-                    'contact': 'Contact - Proxiom.ai',
-                    'demo': 'Request Demo - Proxiom.ai',
-                    'documentation': 'Documentation - Proxiom.ai',
-                    'support': 'Support - Proxiom.ai',
-                    'privacy': 'Privacy Policy - Proxiom.ai',
-                    'terms': 'Terms of Service - Proxiom.ai',
-                    'status': 'System Status - Proxiom.ai'
-                };
-                
-                document.title = titles[pageId] || 'Proxiom.ai';
+        // Modal functionality
+        function openTrialModal() {
+            const modal = document.getElementById('trialModal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+
+            // Focus management for accessibility
+            const firstInput = modal.querySelector('input');
+            if (firstInput) {
+                setTimeout(() => firstInput.focus(), 100);
             }
         }
 
-        // Handle form submissions
-        document.addEventListener('DOMContentLoaded', function() {
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your submission! We will get back to you soon.');
-                });
+        function closeTrialModal() {
+            const modal = document.getElementById('trialModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+
+            // Reset form if showing success message
+            const successMessage = document.getElementById('successMessage');
+            const trialForm = document.getElementById('trialForm');
+            if (successMessage.classList.contains('show')) {
+                successMessage.classList.remove('show');
+                trialForm.style.display = 'block';
+                document.getElementById('waitlistForm').reset();
+                clearErrors();
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('trialModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTrialModal();
+            }
+        });
+
+        // Dual engine toggle functionality
+        function showEngine(engineType) {
+            // Update button states
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
             });
+            event.target.classList.add('active');
 
-            // Initialize scroll reveal animation
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+            // Update content visibility
+            document.querySelectorAll('.engine-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(engineType).classList.add('active');
+        }
 
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
+        // Form validation
+        function validateField(fieldName, value) {
+            const errorElement = document.getElementById(fieldName + 'Error');
+            const fieldElement = document.getElementById(fieldName);
+
+            let isValid = true;
+            let errorMessage = '';
+
+            switch(fieldName) {
+                case 'fullName':
+                    if (!value || value.trim().length < 2) {
+                        isValid = false;
+                        errorMessage = 'Please enter your full name';
                     }
-                });
-            }, observerOptions);
+                    break;
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!value || !emailRegex.test(value)) {
+                        isValid = false;
+                        errorMessage = 'Please enter a valid email address';
+                    }
+                    break;
+                case 'company':
+                    if (!value || value.trim().length < 2) {
+                        isValid = false;
+                        errorMessage = 'Please enter your company name';
+                    }
+                    break;
+                case 'jobTitle':
+                    if (!value || value.trim().length < 2) {
+                        isValid = false;
+                        errorMessage = 'Please enter your job title';
+                    }
+                    break;
+                case 'companySize':
+                    if (!value) {
+                        isValid = false;
+                        errorMessage = 'Please select your company size';
+                    }
+                    break;
+                case 'useCase':
+                    if (!value) {
+                        isValid = false;
+                        errorMessage = 'Please select your primary use case';
+                    }
+                    break;
+            }
 
-            // Observe all reveal elements
-            document.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
+            if (isValid) {
+                fieldElement.classList.remove('error');
+                errorElement.textContent = '';
+            } else {
+                fieldElement.classList.add('error');
+                errorElement.textContent = errorMessage;
+            }
+
+            return isValid;
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.textContent = '';
+            });
+            document.querySelectorAll('.form-control').forEach(field => {
+                field.classList.remove('error');
+            });
+        }
+
+        // Add real-time validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const requiredFields = ['fullName', 'email', 'company', 'jobTitle', 'companySize', 'useCase'];
+
+            requiredFields.forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                if (field) {
+                    field.addEventListener('blur', function() {
+                        validateField(fieldName, this.value);
+                    });
+
+                    field.addEventListener('input', function() {
+                        if (this.classList.contains('error')) {
+                            validateField(fieldName, this.value);
+                        }
+                    });
+                }
             });
         });
 
-        // Handle navigation highlight
-        document.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
+        // Form submission
+        function submitForm(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+
+            // Validate all required fields
+            const requiredFields = ['fullName', 'email', 'company', 'jobTitle', 'companySize', 'useCase'];
+            let isFormValid = true;
+
+            requiredFields.forEach(fieldName => {
+                if (!validateField(fieldName, data[fieldName])) {
+                    isFormValid = false;
                 }
             });
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(current)) {
-                    link.classList.add('active');
+            if (!isFormValid) {
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading"></span> Joining waitlist...';
+            submitBtn.disabled = true;
+
+            // Simulate form submission
+            setTimeout(() => {
+                // Store data in localStorage for demo purposes
+                localStorage.setItem('sootroWaitlistData', JSON.stringify({
+                    ...data,
+                    timestamp: new Date().toISOString()
+                }));
+
+                console.log('Waitlist submission:', data);
+
+                // Show success message
+                document.getElementById('trialForm').style.display = 'none';
+                document.getElementById('successMessage').classList.add('show');
+
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+
+                // Simulate recent sign-up notification
+                if (Math.random() > 0.5) {
+                    showNotification('John from TechCorp just joined the waitlist!');
+                }
+
+            }, 1500);
+        }
+
+        // Notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--dark-secondary);
+                color: var(--text-primary);
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                border: 1px solid var(--primary-teal);
+                z-index: 3000;
+                font-size: 0.9rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                animation: slideInRight 0.3s ease;
+            `;
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease forwards';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 4000);
+        }
+
+        // Additional demo functions
+        function watchDemo() {
+            alert('Demo video would open here. For this prototype, imagine a 2-minute video showing Sootro in action!');
+        }
+
+        function scheduleDemo() {
+            alert('This would open a calendar booking widget to schedule a personalized enterprise demo.');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // Add CSS for slide animations
+        const slideStyles = document.createElement('style');
+        slideStyles.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(slideStyles);
+
+        // Update waitlist counter periodically
+        let waitlistCount = 500;
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                waitlistCount += Math.floor(Math.random() * 3) + 1;
+                const counterElement = document.querySelector('.social-proof-stat .number');
+                if (counterElement) {
+                    counterElement.textContent = waitlistCount + '+';
+                }
+            }
+        }, 30000);
+
+        // Keyboard navigation for modal
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('trialModal');
+            if (modal.classList.contains('show')) {
+                if (e.key === 'Escape') {
+                    closeTrialModal();
+                }
+
+                // Tab trapping
+                if (e.key === 'Tab') {
+                    const focusableElements = modal.querySelectorAll(
+                        'button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                    );
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    } else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
         });
     </script>
 </body>
